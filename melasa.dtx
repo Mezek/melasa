@@ -12,7 +12,7 @@ MeLaSa
 
 The collection of LaTeX styles for the preparation of scientific manuscripts.
 
-LaTeX: <Erik.Bartos@gmail.com>
+LaTeX: <erik.bartos@gmail.com>
 
 
 Installation
@@ -73,10 +73,11 @@ and the derived files           melasa.ins,
 %</internal>
 %<setArticle>\NeedsTeXFormat{LaTeX2e}
 %<setArticle>\ProvidesPackage{setArticle}
-%<setArticle>    [2008/02/16 v1.0 settings]
+%<setArticle>    [2018/02/16 v1.0 settings]
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{setArticle}
 \usepackage[numbered]{hypdoc}
@@ -87,33 +88,40 @@ and the derived files           melasa.ins,
   \DocInput{\jobname.dtx}
 \end{document}
 %</driver>
-%\fi
+% \fi
+% 
+% \changes{v1.0}{2018/02/16}{Initial release}
 %
-%\GetFileInfo{setArticle.sty}
+% \GetFileInfo{setArticle.sty}
 %
-%\title{^^A
-%  \textsf{MeLaSa} --- description text\thanks{^^A
-%    This file describes version \fileversion, last revised \filedate.^^A
-%  }^^A
-%}
-%\author{^^A
-%  You\thanks{E-mail: you@your.domain}^^A
-%}
-%\date{Released \filedate}
+% \title{
+%   \textsf{MeLaSa} --- My \LaTeX\ samples
+%   \thanks{This file describes version \fileversion, last revised \filedate.}
+% }
+% \author{Erik Bartoš\\  \texttt{erik.bartos@gmail.com}}
 %
-%\maketitle
+% \date{Released \filedate}
 %
-%\changes{v1.0}{2009/10/06}{First public release}
+% \maketitle
+% \begin{abstract}
+%   Put text here.
+% \end{abstract}
 %
-%\DescribeMacro{\examplemacro}
+% \section{Introduction}
+%
+% Put text here.
+%
+% \section{Usage}
+%
+% \DescribeMacro{\examplemacro}
 % Some text about an example macro called \cs{examplemacro}, which
 % might have an optional argument \oarg{arg1} and mandatory one
 % \marg{arg2}.
 %
-%\StopEventually{^^A
-%  \PrintChanges
-%  \PrintIndex
-%}
+% \StopEventually{
+%   \PrintChanges
+%   \PrintIndex
+% }
 %
 %    \begin{macrocode}
 %<*setArticle>
