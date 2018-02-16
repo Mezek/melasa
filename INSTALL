@@ -1,0 +1,6 @@
+Installation
+============
+
+> pdflatex melasa.dtx
+
+Copy styles to working directory and include them in your *.tex file.

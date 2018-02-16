@@ -1,0 +1,149 @@
+% \iffalse meta-comment
+% !TEX program  = pdfLaTeX
+%
+% Copyright (C) 2018 by Erik Bartoš
+%
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+MeLaSa
+======
+
+The collection of LaTeX styles for the preparation of scientific manuscripts.
+
+LaTeX: <Erik.Bartos@gmail.com>
+
+
+Installation
+============
+
+> pdflatex melasa.dtx
+
+Copy styles to working directory and include them in your *.tex file.
+%</readme>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+
+\keepsilent
+\askforoverwritefalse
+\preamble
+
+This is a generated file.
+
+Copyright (C) 2018 by Erik Bartos
+
+\endpreamble
+\postamble
+
+This work consists of the file  melasa.dtx
+and the derived files           melasa.ins,
+                                melasa.pdf and
+                                setArticle.sty
+
+\endpostamble
+\usedir{tex/latex/melasa}
+\generate{
+	\file{setArticle.sty}{\from{melasa.dtx}{setArticle}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/melasa}
+\generate{
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/melasa}
+\generate{
+  \file{README.txt}{\from{\jobname.dtx}{readme}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
+%<setArticle>\NeedsTeXFormat{LaTeX2e}
+%<setArticle>\ProvidesPackage{melasa}
+%<setArticle>    [2008/02/16 v1.0 settings]
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{setArticle}
+\usepackage[numbered]{hypdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+%\fi
+%
+%\GetFileInfo{setArticle.sty}
+%
+%\title{^^A
+%  \textsf{MeLaSa} --- description text\thanks{^^A
+%    This file describes version \fileversion, last revised \filedate.^^A
+%  }^^A
+%}
+%\author{^^A
+%  You\thanks{E-mail: you@your.domain}^^A
+%}
+%\date{Released \filedate}
+%
+%\maketitle
+%
+%\changes{v1.0}{2009/10/06}{First public release}
+%
+%\DescribeMacro{\examplemacro}
+% Some text about an example macro called \cs{examplemacro}, which
+% might have an optional argument \oarg{arg1} and mandatory one
+% \marg{arg2}.
+%
+%\StopEventually{^^A
+%  \PrintChanges
+%  \PrintIndex
+%}
+%
+%    \begin{macrocode}
+%<*setArticle>
+%    \end{macrocode}
+%
+%\begin{macro}{\examplemacro}
+%\changes{v1.0}{2008/02/16}{Useful macro}
+%    \begin{macrocode}
+\newcommand*\examplemacro[2][]{%
+  Some code here, probably
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%    \begin{macrocode}
+%</setArticle>
+%    \end{macrocode}
+% \Finale
+%
+% \typeout{****************************************************}
+% \typeout{*}
+% \typeout{* To finish the installation you have to move the}
+% \typeout{* following file into a directory searched by TeX:}
+% \typeout{*}
+% \typeout{* setArticle.sty}
+% \typeout{*}
+% \typeout{* To produce the documentation run the file}
+% \typeout{* melasa.dtx through LaTeX.}
+% \typeout{*}
+% \typeout{* Happy TeXing!}
+% \typeout{*}
+% \typeout{****************************************************}
+\endinput
