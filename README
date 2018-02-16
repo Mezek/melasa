@@ -1,0 +1,14 @@
+MeLaSa
+======
+
+The collection of LaTeX styles for the preparation of scientific manuscripts.
+
+LaTeX: <Erik.Bartos@gmail.com>
+
+
+Installation
+============
+
+> tex melasa.dtx
+
+Copy styles to working directory and include them in your *.tex file.
