@@ -50,19 +50,23 @@ and the derived files           melasa.ins,
 
 \endpostamble
 \usedir{tex/latex/melasa}
-\generate{
-	\file{setArticle.sty}{\from{melasa.dtx}{setArticle}}
+\generate{%
+	\file{setArticle.sty}{%
+		\from{melasa.dtx}{setArticle}}
+	\file{templateRevtex.tex}{%
+		\from{melasa.dtx}{templA}}
 }
+
 %</install>
 %<install>\endbatchfile
 %<*internal>
 \usedir{source/latex/melasa}
-\generate{
+\generate{%
   \file{\jobname.ins}{\from{\jobname.dtx}{install}}
 }
 \nopreamble\nopostamble
 \usedir{doc/latex/melasa}
-\generate{
+\generate{%
   \file{README.txt}{\from{\jobname.dtx}{readme}}
 }
 \ifx\fmtname\nameofplainTeX
@@ -71,9 +75,12 @@ and the derived files           melasa.ins,
   \expandafter\endgroup
 \fi
 %</internal>
-%<setArticle>\NeedsTeXFormat{LaTeX2e}
-%<setArticle>\ProvidesPackage{setArticle}
-%<setArticle>    [2018/02/16 v1.0 settings]
+%<setArticle>\ProvidesFile{setArticle.sty}
+%<*driver>
+	\NeedsTeXFormat{LaTeX2e}
+	\ProvidesFile{\jobname.dtx}
+		[2018/02/16 v1.0 settings]
+%</driver>
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage[T1]{fontenc}
@@ -92,13 +99,13 @@ and the derived files           melasa.ins,
 % 
 % \changes{v1.0}{2018/02/16}{Initial release}
 %
-% \GetFileInfo{setArticle.sty}
+% \GetFileInfo{\jobname.dtx}
 %
 % \title{
 %   \textsf{MeLaSa} --- My \LaTeX\ samples
 %   \thanks{This file describes version \fileversion, last revised \filedate.}
 % }
-% \author{Erik Bartoš\\  \texttt{erik.bartos@gmail.com}}
+% \author{Erik Bartoš\\[0.7em]  \texttt{<erik.bartos@gmail.com>}}
 %
 % \date{Released \filedate}
 %
@@ -109,7 +116,7 @@ and the derived files           melasa.ins,
 %
 % \section{Introduction}
 %
-% Put text here.
+% Template for REVTeX
 %
 % \section{Usage}
 %
@@ -122,6 +129,12 @@ and the derived files           melasa.ins,
 %   \PrintChanges
 %   \PrintIndex
 % }
+%
+%    \begin{macrocode}
+%<templA>\usepackage{comment}
+%    \end{macrocode}
+%
+%
 %
 %    \begin{macrocode}
 %<*setArticle>
