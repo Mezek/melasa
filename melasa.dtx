@@ -15,12 +15,28 @@ The collection of LaTeX styles for the preparation of scientific manuscripts.
 LaTeX: <erik.bartos@gmail.com>
 
 
-Installation
-============
+To unpack the files
+===================
 
 > pdflatex melasa.dtx
 
-Copy styles to working directory and include them in your *.tex file.
+
+After unpacking you will find files:
+====================================
+
+README.txt            Readme file
+melasa.pdf            User documentation
+setArticle.sty        ...
+setRevtex.sty         ...
+template_article.tex  ...
+template_revtex.tex   ...
+
+
+Using the files
+===============
+
+Move files ending *.sty and *tex to a standard TeX input directory.
+
 %</readme>
 %<*internal>
 \fi
@@ -42,19 +58,18 @@ Copyright (C) 2018 by Erik Bartos
 
 \endpreamble
 \postamble
-
-This work consists of the file  melasa.dtx
-and the derived files           melasa.ins,
-                                melasa.pdf and
-                                setArticle.sty
-
+%^^A No postamble description.
 \endpostamble
 \usedir{tex/latex/melasa}
 \generate{%
 	\file{setArticle.sty}{%
-		\from{melasa.dtx}{setArticle}}
-	\file{templateRevtex.tex}{%
+		\from{melasa.dtx}{setA}}
+	\file{setRevtex.sty}{%
+		\from{melasa.dtx}{setB}}
+	\file{template_article.tex}{%
 		\from{melasa.dtx}{templA}}
+	\file{template_revtex.tex}{%
+		\from{melasa.dtx}{templB}}
 }
 
 %</install>
@@ -75,7 +90,8 @@ and the derived files           melasa.ins,
   \expandafter\endgroup
 \fi
 %</internal>
-%<setArticle>\ProvidesFile{setArticle.sty}
+%^^A<setA>\ProvidesFile{setArticle.sty}
+%^^A<setB>\ProvidesFile{setRevtex.sty}
 %<*driver>
 	\NeedsTeXFormat{LaTeX2e}
 	\ProvidesFile{\jobname.dtx}
@@ -103,7 +119,7 @@ and the derived files           melasa.ins,
 %
 % \title{
 %   \textsf{MeLaSa} --- My \LaTeX\ samples
-%   \thanks{This file describes version \fileversion, last revised \filedate.}
+%   ^^A\thanks{This file describes version \fileversion, last revised \filedate.}
 % }
 % \author{Erik Bartoš\\[0.7em]  \texttt{<erik.bartos@gmail.com>}}
 %
@@ -111,37 +127,131 @@ and the derived files           melasa.ins,
 %
 % \maketitle
 % \begin{abstract}
-%   Put text here.
+%   The supporting style files for the preparation of scientific manuscripts, mainly with theoretical physics thematic. The collection includes standard article, REVTeX template manuscripts.
 % \end{abstract}
+%
+% ^^A To make glossary run:
+% ^^A > makeindex -s gglo.ist -o melasa.gls melasa.glo
 %
 % \section{Introduction}
 %
-% Template for REVTeX
+% In the process of writing scientific paper, many times you find helpful package, which provides you macro(s) to improve your work. You copy these macros into your further files, sometimes slightly modify, but generally you are using the same set. In other words, it is your style of work. This package introduces a few of such styles.
 %
-% \section{Usage}
+%^^A-------------------------------------------------------------------------------
+%^^A	SECTION
+%^^A-------------------------------------------------------------------------------
+% \section{Templates and styles}
 %
-% \DescribeMacro{\examplemacro}
-% Some text about an example macro called \cs{examplemacro}, which
-% might have an optional argument \oarg{arg1} and mandatory one
-% \marg{arg2}.
+% To make the package more selfexplanatory, I include also the template files. They can help you to start your work on the paper more quickly and to save your time. You can copy them into your working directory, rename, edit, modify and compile them. Besides, you can enhance them by putting your own definitions, macros,\dots into the reserved place in the templates.
+%
+% You can input the style files into templates by simple command\\
+% \DescribeMacro
+%     \input\marg{file}\\
+% where the \marg{file} arguments are
+% \begin{description}
+% \item[setArticle.sty]
+% \item[setRevtex.sty]
+% \end{description}
+% Preferably do not modify the style files, as they can be used in another files. You can put your own setting behind the style files input.
+%
+% Following macros were used in the presented styles:\\
+% \DescribeMacro
+%     \m\marg{text}\\
+% typeset \textit{text} as normal font in mathematic environment and corresponding normal letters for\\
+% \DescribeMacro
+%     \dd
+% derivation or differential, e.~g. under integral, $\int f(x)\dd x$,\\
+% \DescribeMacro
+%     \ee
+% exponent $\ee^x$\\
+% \DescribeMacro
+%     \ii
+% and complex unit $\ii$.
 %
 % \StopEventually{
 %   \PrintChanges
 %   \PrintIndex
 % }
 %
+%^^A-------------------------------------------------------------------------------
+%^^A	SECTION
+%^^A-------------------------------------------------------------------------------
+% \section{Implementation}
+%
+%^^A \DescribeMacro{\examplemacro}
+%^^A Some text about an example macro called \cs{examplemacro}, which
+%^^A might have an optional argument \oarg{arg1} and mandatory one
+%^^A \marg{arg2}.
+%
+% The document class and corresponding style are defined at first step
 %    \begin{macrocode}
-%<templA>\usepackage{comment}
+%<templA|templB>
+%<templA>\documentclass[12pt,a4paper]{article}
+%<templA>\input{setArticle.sty}
+%<templB>\documentclass[aps,10pt,final,notitlepage,oneside,twocolumn,
+%<templB>  nobibnotes,footinbib,superscriptaddress,showpacs,centertags,
+%<templB>  showkeys,amssymb]{revtex4}
+%<templB>\input{setRevtex.sty}
+%    \end{macrocode}
+% Next the declaration of packages and their options continue
+%    \begin{macrocode}
+%<*setA|setB>
+%    \end{macrocode}
+%    \begin{macrocode}
+%% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{graphicx}
+  \graphicspath{{/}{figures/}}
+  \DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{epstopdf}
+  \epstopdfsetup{suffix=}
+\usepackage[caption=false]{subfig}
+\usepackage{amssymb}
+\usepackage{tabularx,booktabs}
+\usepackage{multirow}
+\usepackage{units}
+\usepackage{xspace}
+\usepackage{hepnicenames}
+%<setA>\usepackage{comment}
+%<setB>\usepackage{comment}
+%<setC>\usepackage[slovak]{babel}
+%<setC>\usepackage{indentfirst}
 %    \end{macrocode}
 %
-%
+% New macros used in the styles.
 %
 %    \begin{macrocode}
-%<*setArticle>
+%%
+%% Macros
+%    \end{macrocode}
+%\begin{macro}{\m}
+% normal text
+%    \begin{macrocode}
+\newcommand{\m}[1]{\mathrm {#1}}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\dd}
+% derived letters
+%    \begin{macrocode}
+\newcommand*{\dd}{\ensuremath{\mathrm{d}}}
+\newcommand*{\ee}{\ensuremath{\mathrm{e}}}
+\newcommand*{\ii}{\ensuremath{\mathrm{i}}}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nn}
+% new line in equations
+%    \begin{macrocode}
+\newcommand*{\nn}{\ensuremath{\nonumber}}
+%</setA|setB>
+%    \end{macrocode}
+%\end{macro}
+%    \begin{macrocode}
+%<*setA>
 %    \end{macrocode}
 %
 %\begin{macro}{\examplemacro}
-%\changes{v1.0}{2008/02/16}{Useful macro}
 %    \begin{macrocode}
 \newcommand*\examplemacro[2][]{%
   Some code here, probably
@@ -150,16 +260,66 @@ and the derived files           melasa.ins,
 %\end{macro}
 %
 %    \begin{macrocode}
-%</setArticle>
+%</setA>
 %    \end{macrocode}
+%
+% Custom settings in user working or template file
+%    \begin{macrocode}
+%<*templA|templB>
+%    \end{macrocode}
+%    \begin{macrocode}
+
+%%-------------------------------------------------------------------------------
+%% Custom settings and definitions - start
+
+\usepackage[pdftex]{hyperref}
+  \hypersetup{
+    breaklinks    = true,
+    baseurl       = http://,
+    pdfborder     = 0 0 0,
+    pdfpagemode   = UseNone,
+    pdfstartview  = FitH,
+    pdfstartpage  = 1,
+    pdfcreator    = Pdf\LaTeX{} with hyperref package,
+    pdfproducer   = Pdf\LaTeX{},
+    bookmarksopen = true,
+    pdfauthor     = Erik Bartoš,
+    pdftitle      = {Scientific paper},
+    pdfsubject    = {Scientific paper},
+    pdfkeywords   = {theoretical, physics, article},
+    unicode       = true,
+    colorlinks    = true
+  }
+
+%% Custom settings and definitions - end
+%%-------------------------------------------------------------------------------
+%    \end{macrocode}
+% Body of the manuscript
+%    \begin{macrocode}
+
+\begin{document}
+   My work\dots
+\end{document}
+
+%    \end{macrocode}
+%    \begin{macrocode}
+%</templA|templB>
+%    \end{macrocode}
+%
 % \Finale
 %
 % \typeout{****************************************************}
 % \typeout{*}
 % \typeout{* To finish the installation you have to move the}
-% \typeout{* following file into a directory searched by TeX:}
+% \typeout{* following files into a directory searched by TeX:}
 % \typeout{*}
 % \typeout{* setArticle.sty}
+% \typeout{* setRevtex.sty}
+% \typeout{*}
+% \typeout{* You can use also templates:}
+% \typeout{*}
+% \typeout{* template_article.tex}
+% \typeout{* template_revtex.tex}
 % \typeout{*}
 % \typeout{* Happy TeXing!}
 % \typeout{*}

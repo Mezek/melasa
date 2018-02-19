@@ -5,4 +5,4 @@ To produce the documentation and style files run the file `melasa.dtx' through P
 
 > pdflatex melasa.dtx
 
-Copy styles to working directory and include them in your *.tex file.
+After the processing, consult README.txt file.
