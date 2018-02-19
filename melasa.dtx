@@ -214,6 +214,7 @@ Copyright (C) 2018 by Erik Bartos
 \usepackage{units}
 \usepackage{xspace}
 \usepackage{hepnicenames}
+\usepackage{tikz}
 %<setA>\usepackage{comment}
 %<setB>\usepackage{comment}
 %<setC>\usepackage[slovak]{babel}
@@ -251,11 +252,25 @@ Copyright (C) 2018 by Erik Bartos
 %<*setA>
 %    \end{macrocode}
 %
-%\begin{macro}{\examplemacro}
+% ORCID author link (default number is 0000-0003-3970-5043)
+%\begin{macro}{\orcidA}
 %    \begin{macrocode}
-\newcommand*\examplemacro[2][]{%
-  Some code here, probably
+%% ORCID
+\definecolor{lime}{HTML}{A6CE39}
+\newcommand{\orcidicon}{%
+  \begin{tikzpicture}
+  \draw[lime, fill=lime] (0,0) 
+  circle [radius=0.16] 
+  node[white] {{\fontfamily{qag}\selectfont \tiny ID}};
+  \draw[white, fill=white] (-0.0625,0.095) 
+  circle [radius=0.007];
+  \end{tikzpicture}
+  \hspace{-2mm}
 }
+\foreach \x in {A, ..., Z}{%
+  \expandafter\xdef\csname orcid\x\endcsname{\noexpand\href{https://orcid.org/\csname orcidauthor\x\endcsname}{\noexpand\orcidicon}}
+}
+\newcommand{\orcidauthorA}{0000-0003-3970-5043}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -298,7 +313,12 @@ Copyright (C) 2018 by Erik Bartos
 %    \begin{macrocode}
 
 \begin{document}
-   My work\dots
+\title{Title of the paper}
+%%\renewcommand{\orcidauthorA}{0000-0001-8368-6383}
+\author{Erik Bartoš\orcidA{}}
+\maketitle
+
+My work\dots
 \end{document}
 
 %    \end{macrocode}
