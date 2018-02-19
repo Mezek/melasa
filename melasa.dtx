@@ -155,10 +155,10 @@ Copyright (C) 2018 by Erik Bartos
 % \end{description}
 % Preferably do not modify the style files, as they can be used in another files. You can put your own setting behind the style files input.
 %
-% Following macros were used in the presented styles:\\
+% Base macro used in mathematic environment\\
 % \DescribeMacro
 %     \m\marg{text}\\
-% typeset \textit{text} as normal font in mathematic environment and corresponding normal letters for\\
+% to typeset \textit{text} as normal font. Corresponding normal letters as\\
 % \DescribeMacro
 %     \dd
 % derivation or differential, e.~g. under integral, $\int f(x)\dd x$,\\
@@ -168,6 +168,19 @@ Copyright (C) 2018 by Erik Bartos
 % \DescribeMacro
 %     \ii
 % and complex unit $\ii$.
+%
+% Macros coloring \textit{text} by user defined Red Green Blue colors\\
+% \DescribeMacro
+%     \colorR\marg{text}\\
+% \DescribeMacro
+%     \colorG\marg{text}\\
+% \DescribeMacro
+%     \colorB\marg{text}
+%
+% ORCID author link\\
+% \DescribeMacro
+%     \orcidauthorX\marg{xxxx}\\
+% Default ORCID number for author A is 0000-0003-3970-5043, must be reset by \verb|\renewcommand{\orcidauthorA}{xxxx}|. Next author's ORCID numbers for the authors B, C,\dots Z are set by \verb|\newcommand{\orciduathorB}{xxxx}|, etc.
 %
 % \StopEventually{
 %   \PrintChanges
@@ -209,11 +222,12 @@ Copyright (C) 2018 by Erik Bartos
 \usepackage{epstopdf}
   \epstopdfsetup{suffix=}
 \usepackage[caption=false]{subfig}
-\usepackage{amssymb}
+\usepackage{amsmath,amssymb}
 \usepackage{tabularx,booktabs}
 \usepackage{multirow}
 \usepackage{units}
 \usepackage{xspace}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{hepnicenames}
 \usepackage{tikz}
 %<setA>\usepackage{comment}
@@ -246,6 +260,26 @@ Copyright (C) 2018 by Erik Bartos
 % new line in equations
 %    \begin{macrocode}
 \newcommand*{\nn}{\ensuremath{\nonumber}}
+%    \end{macrocode}
+%\begin{macro}{\colorR}
+% red color macro
+%    \begin{macrocode}
+\newcommand{\colorR}[1]{{\color{red}#1}}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\colorG}
+% green color macro
+%    \begin{macrocode}
+\newcommand{\colorG}[1]{{\color{ForestGreen}#1}}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\colorB}
+% blue color macro
+%    \begin{macrocode}
+\newcommand{\colorB}[1]{{\color{RoyalBlue}#1}}
+%    \end{macrocode}
+%\end{macro}
+%    \begin{macrocode}
 %</setA|setB>
 %    \end{macrocode}
 %\end{macro}
@@ -253,8 +287,7 @@ Copyright (C) 2018 by Erik Bartos
 %<*setA>
 %    \end{macrocode}
 %
-% ORCID author link (default number is 0000-0003-3970-5043)
-%\begin{macro}{\orcidA}
+%\begin{macro}{ORCID}
 %    \begin{macrocode}
 %% ORCID
 \definecolor{lime}{HTML}{A6CE39}
