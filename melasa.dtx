@@ -130,8 +130,9 @@ Copyright (C) 2018 by Erik Bartos
 %   The supporting style files for the preparation of scientific manuscripts, mainly with theoretical physics thematic. The collection includes standard article, REVTeX template manuscripts.
 % \end{abstract}
 %
-% ^^A To make glossary run:
-% ^^A > makeindex -s gglo.ist -o melasa.gls melasa.glo
+%^^A To make glossary and index run:
+%^^A > makeindex -s gglo.ist -o melasa.gls melasa.glo
+%^^A > makeindex -s gind.ist -o melasa.ind melasa.idx
 %
 % \section{Introduction}
 %
@@ -173,9 +174,9 @@ Copyright (C) 2018 by Erik Bartos
 %   \PrintIndex
 % }
 %
-%^^A-------------------------------------------------------------------------------
+%^^A----------------------------------------------------------------------------
 %^^A	SECTION
-%^^A-------------------------------------------------------------------------------
+%^^A----------------------------------------------------------------------------
 % \section{Implementation}
 %
 %^^A \DescribeMacro{\examplemacro}
@@ -268,8 +269,9 @@ Copyright (C) 2018 by Erik Bartos
   \hspace{-2mm}
 }
 \foreach \x in {A, ..., Z}{%
-  \expandafter\xdef\csname orcid\x\endcsname{\noexpand\href{https://orcid.org/\csname orcidauthor\x\endcsname}{\noexpand\orcidicon}}
-}
+  \expandafter\xdef\csname orcid\x\endcsname{%
+    \noexpand\href{https://orcid.org/\csname orcidauthor\x\endcsname}{%
+      \noexpand\orcidicon}}}
 \newcommand{\orcidauthorA}{0000-0003-3970-5043}
 %    \end{macrocode}
 %\end{macro}
@@ -284,7 +286,7 @@ Copyright (C) 2018 by Erik Bartos
 %    \end{macrocode}
 %    \begin{macrocode}
 
-%%-------------------------------------------------------------------------------
+%%-----------------------------------------------------------------------
 %% Custom settings and definitions - start
 
 \usepackage[pdftex]{hyperref}
@@ -307,14 +309,14 @@ Copyright (C) 2018 by Erik Bartos
   }
 
 %% Custom settings and definitions - end
-%%-------------------------------------------------------------------------------
+%%-----------------------------------------------------------------------
 %    \end{macrocode}
 % Body of the manuscript
 %    \begin{macrocode}
 
 \begin{document}
 \title{Title of the paper}
-%%\renewcommand{\orcidauthorA}{0000-0001-8368-6383}
+%%\renewcommand{\orcidauthorA}{0000-0003-3970-5043}
 \author{Erik Bartoš\orcidA{}}
 \maketitle
 
