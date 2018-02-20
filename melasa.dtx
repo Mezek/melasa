@@ -25,11 +25,21 @@ After unpacking you will find files:
 ====================================
 
 README.txt            Readme file
-melasa.pdf            User documentation
+melasa.pdf            User documentation (see comment below how to make
+                                          complete documentary file)
 setArticle.sty        ...
 setRevtex.sty         ...
 template_article.tex  ...
 template_revtex.tex   ...
+
+
+To make documentation
+=====================
+
+Run following commands to produce complete documentary file melasa.pdf.
+> makeindex -s gglo.ist -o melasa.gls melasa.glo
+> makeindex -s gind.ist -o melasa.ind melasa.idx
+> pdflatex melasa.dtx
 
 
 Using the files
@@ -252,17 +262,20 @@ Copyright (C) 2018 by Erik Bartos
 % $\ack$,\\
 % \DescribeMacro
 %     \ket
-% $\ket$.\\
+% $\ket$.
 %
 % Macros coloring \textit{text} by user defined Red Green Blue colors\\
 % \DescribeMacro
-%     \colorR\marg{text}\\
+%     \colorR\marg{text}
+% \colorR{red text}\\
 % \DescribeMacro
-%     \colorG\marg{text}\\
+%     \colorG\marg{text}
+% \colorG{green text}\\
 % \DescribeMacro
 %     \colorB\marg{text}
+% \colorB{blue text}
 %
-% ORCID author link\\
+% \par ORCID author link\\
 % \DescribeMacro
 %     \orcidauthorX\marg{xxxx}\\
 % Default ORCID number for author A is 0000-0003-3970-5043. You can change it by \verb|\renewcommand| reset. B, C,\dots Z author's ORCID numbers must be set by \verb|\newcommand| macro as
@@ -270,7 +283,14 @@ Copyright (C) 2018 by Erik Bartos
 % \renewcommand{\orcidauthorA}{xxxx-xxxx-xxxx-xxxx}
 % \newcommand{\orcidauthorB}{yyyy-yyyy-yyyy-yyyy}
 % \end{verbatim}
-% \par
+%
+% To-Do macros\\
+% \DescribeMacro
+%     \todoEB\oarg{abbrev}\marg{text}\\
+% \DescribeMacro
+%     \todoRP\oarg{abbrev}\marg{text}
+% \todoEB[--]{Todo notes of the first author.}
+% \todoRP[$\star$]{Todo notes of the second author.}
 %
 % \StopEventually{
 %   \PrintChanges
@@ -431,6 +451,32 @@ Copyright (C) 2018 by Erik Bartos
     \noexpand\href{https://orcid.org/\csname orcidauthor\x\endcsname}{%
       \noexpand\orcidicon}}}
 \newcommand{\orcidauthorA}{0000-0003-3970-5043}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\todoA}
+%    \begin{macrocode}
+%% To-do notes
+\newcounter{mycomment}
+\newcommand*{\todoA}[2][]{% 
+	% initials of the author (optional) + note in the margin
+	\refstepcounter{mycomment}%
+	{%
+		%\setstretch{0.7}% spacing
+		\todo[color={red!100!green!33},size=\small,inline]{%
+			%\textbf{Comment [\uppercase{#1}\themycomment]:}~#2}%
+		\textbf{[\uppercase{#1}\themycomment]:}~#2}%
+}}
+\newcommand*{\todoEB}[2][]{\todoA[EB#1]{#2}}
+
+\newcounter{twocomment}
+\newcommand*{\todoB}[2][]{% 
+\refstepcounter{twocomment}%
+{%
+	%\setstretch{0.7}% spacing
+	\todo[color={red!50!green!33},size=\small,inline]{%
+		\textbf{[\uppercase{#1}\thetwocomment]:}~#2}%
+}}
+\newcommand*{\todoRP}[2][]{\todoB[RP#1]{#2}}
 %    \end{macrocode}
 %\end{macro}
 %
