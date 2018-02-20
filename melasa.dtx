@@ -38,6 +38,44 @@ Using the files
 Move files ending *.sty and *tex to a standard TeX input directory.
 
 %</readme>
+%<*figure>
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave newpath
+20 20 moveto
+20 220 lineto
+220 220 lineto
+220 20 lineto
+closepath 2 setlinewidth gsave
+.4 setgray fill
+grestore stroke grestore
+%</figure>
+%<*references>
+@Article{Bennett,
+	author    = "Bennett, G. W. and others",
+	title     = "{Final report of the muon E821 anomalous magnetic moment
+		measurement at  BNL}",
+	journal   = "Phys. Rev.",
+	volume    = "D73",
+	year      = "2006",
+	pages     = "072003",
+	doi       = "10.1103/PhysRevD.73.072003",
+}
+
+@Article{Kinoshita,
+	author    = "Kinoshita, Toichiro and Nio, M.",
+	title     = "{Improved alpha**4 term of the muon anomalous magnetic
+		moment}",
+	journal   = "Phys. Rev.",
+	volume    = "D70",
+	year      = "2004",
+	pages     = "113001",
+	doi       = "10.1103/PhysRevD.70.113001",
+}
+%</references>
 %<*internal>
 \fi
 \def\nameofplainTeX{plain}
@@ -66,10 +104,8 @@ Copyright (C) 2018 by Erik Bartos
 		\from{melasa.dtx}{setA}}
 	\file{setRevtex.sty}{%
 		\from{melasa.dtx}{setB}}
-	\file{template_article.tex}{%
-		\from{melasa.dtx}{templA}}
-	\file{template_revtex.tex}{%
-		\from{melasa.dtx}{templB}}
+	\file{setSlovak.sty}{%
+		\from{melasa.dtx}{setC}}
 }
 
 %</install>
@@ -82,7 +118,18 @@ Copyright (C) 2018 by Erik Bartos
 \nopreamble\nopostamble
 \usedir{doc/latex/melasa}
 \generate{%
-  \file{README.txt}{\from{\jobname.dtx}{readme}}
+  \file{README.txt}{%
+      \from{\jobname.dtx}{readme}}
+  \file{template_article.tex}{%
+      \from{melasa.dtx}{templA}}
+  \file{template_revtex.tex}{%
+      \from{melasa.dtx}{templB}}
+  \file{template_ziadost.tex}{%
+	\from{melasa.dtx}{templC}}
+  \file{example_figure.eps}{%
+	\from{melasa.dtx}{figure}}
+  \file{example_references.bib}{%
+	\from{melasa.dtx}{references}}
 }
 \ifx\fmtname\nameofplainTeX
   \expandafter\endbatchfile
@@ -114,8 +161,28 @@ Copyright (C) 2018 by Erik Bartos
 % \fi
 % 
 % \changes{v1.0}{2018/02/16}{Initial release}
+% \changes{v1.1}{2018/02/20}{Added new templates}
 %
 % \GetFileInfo{\jobname.dtx}
+%
+% \DoNotIndex{\appendix,\arabic,\author}
+% \DoNotIndex{\begin,\bibitem,\boldmath}
+% \DoNotIndex{\cite,\color,\csname}
+% \DoNotIndex{\definecolor,\documentclass,\dots,\draw}
+% \DoNotIndex{\end,\endcsname,\ensuremath,\expandafter}
+% \DoNotIndex{\fontfamily,\foreach,\frac}
+% \DoNotIndex{\href,\hspace}
+% \DoNotIndex{\input}
+% \DoNotIndex{\LaTeX}
+% \DoNotIndex{\maketitle,\mathinner,\mathrm,\mbox}
+% \DoNotIndex{\newcommand,\noexpand,\nonumber}
+% \DoNotIndex{\orcidauthorA,\orcidicon}
+% \DoNotIndex{\renewcommand}
+% \DoNotIndex{\section,\selectfont,\setcounter}
+% \DoNotIndex{\textbf,\textit,\theequation,\tiny,\title}
+% \DoNotIndex{\usepackage}
+% \DoNotIndex{\vert}
+% \DoNotIndex{\x,\xdef}
 %
 % \title{
 %   \textsf{MeLaSa} --- My \LaTeX\ samples
@@ -123,16 +190,18 @@ Copyright (C) 2018 by Erik Bartos
 % }
 % \author{Erik Bartoš\\[0.7em]  \texttt{<erik.bartos@gmail.com>}}
 %
-% \date{Released \filedate}
-%
+% \date{\filedate}
 % \maketitle
+%
 % \begin{abstract}
 %   The supporting style files for the preparation of scientific manuscripts, mainly with theoretical physics thematic. The collection includes standard article, REVTeX template manuscripts.
 % \end{abstract}
+% \tableofcontents
 %
 %^^A To make glossary and index run:
 %^^A > makeindex -s gglo.ist -o melasa.gls melasa.glo
 %^^A > makeindex -s gind.ist -o melasa.ind melasa.idx
+%
 %
 % \section{Introduction}
 %
@@ -164,10 +233,26 @@ Copyright (C) 2018 by Erik Bartos
 % derivation or differential, e.~g. under integral, $\int f(x)\dd x$,\\
 % \DescribeMacro
 %     \ee
-% exponent $\ee^x$\\
+% exponent, $\ee^x$,\\
 % \DescribeMacro
 %     \ii
-% and complex unit $\ii$.
+% complex unit, $\ii$,\\
+% \DescribeMacro
+%     \nn
+% newline in equations\\
+% \DescribeMacro
+%     \vecc\marg{text}
+% bold vector, \vecc{a},\\
+% bra-ack-ket brackets\\
+% \DescribeMacro
+%     \bra
+% $\bra$,\\
+% \DescribeMacro
+%     \ack
+% $\ack$,\\
+% \DescribeMacro
+%     \ket
+% $\ket$.\\
 %
 % Macros coloring \textit{text} by user defined Red Green Blue colors\\
 % \DescribeMacro
@@ -180,7 +265,12 @@ Copyright (C) 2018 by Erik Bartos
 % ORCID author link\\
 % \DescribeMacro
 %     \orcidauthorX\marg{xxxx}\\
-% Default ORCID number for author A is 0000-0003-3970-5043, must be reset by \verb|\renewcommand{\orcidauthorA}{xxxx}|. Next author's ORCID numbers for the authors B, C,\dots Z are set by \verb|\newcommand{\orciduathorB}{xxxx}|, etc.
+% Default ORCID number for author A is 0000-0003-3970-5043. You can change it by \verb|\renewcommand| reset. B, C,\dots Z author's ORCID numbers must be set by \verb|\newcommand| macro as
+% \par\begin{verbatim}
+% \renewcommand{\orcidauthorA}{xxxx-xxxx-xxxx-xxxx}
+% \newcommand{\orcidauthorB}{yyyy-yyyy-yyyy-yyyy}
+% \end{verbatim}
+% \par
 %
 % \StopEventually{
 %   \PrintChanges
@@ -199,20 +289,40 @@ Copyright (C) 2018 by Erik Bartos
 %
 % The document class and corresponding style are defined at first step
 %    \begin{macrocode}
-%<templA|templB>
+%<*templA|templB|templC>
+%% File: `file_name.tex'
+%% Coding: utf8
+%% Format: PdfLaTeX
+%% Title: Set file_title
+%% Date: Tue 20 Feb 2018 10:17:30 CET
+%% (C) 2018 Erik Bartoš
+%</templA|templB|templC>
+%<templA|templB|templC>
 %<templA>\documentclass[12pt,a4paper]{article}
 %<templA>\input{setArticle.sty}
 %<templB>\documentclass[aps,10pt,final,notitlepage,oneside,twocolumn,
 %<templB>  nobibnotes,footinbib,superscriptaddress,showpacs,centertags,
 %<templB>  showkeys,amssymb]{revtex4}
 %<templB>\input{setRevtex.sty}
+%<templC>\documentclass[draft=off,%
+%<templC>paper=a4,%
+%<templC>fromalign=left,%
+%<templC>fromrule=on,%
+%<templC>fromphone=on,%
+%<templC>subject=beforeopening,%
+%<templC>version=last]{scrlttr2}
+%<templC>\input{setSlovak.sty}
 %    \end{macrocode}
 % Next the declaration of packages and their options continue
 %    \begin{macrocode}
-%<*setA|setB>
-%    \end{macrocode}
+%<*setA|setB|setC>
+%% Version: v1.1
+%% Revised: 2018/02/20
+%    \end{macrocode}\fileversion
 %    \begin{macrocode}
+%%
 %% Packages
+%<setC>\usepackage[slovak]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype}
@@ -223,6 +333,7 @@ Copyright (C) 2018 by Erik Bartos
   \epstopdfsetup{suffix=}
 \usepackage[caption=false]{subfig}
 \usepackage{amsmath,amssymb}
+\usepackage{bm}
 \usepackage{tabularx,booktabs}
 \usepackage{multirow}
 \usepackage{units}
@@ -230,9 +341,9 @@ Copyright (C) 2018 by Erik Bartos
 \usepackage[dvipsnames]{xcolor}
 \usepackage{hepnicenames}
 \usepackage{tikz}
+\usepackage{todonotes}
 %<setA>\usepackage{comment}
 %<setB>\usepackage{comment}
-%<setC>\usepackage[slovak]{babel}
 %<setC>\usepackage{indentfirst}
 %    \end{macrocode}
 %
@@ -240,7 +351,7 @@ Copyright (C) 2018 by Erik Bartos
 %
 %    \begin{macrocode}
 %%
-%% Macros
+%% MATH macros
 %    \end{macrocode}
 %\begin{macro}{\m}
 % normal text
@@ -261,6 +372,21 @@ Copyright (C) 2018 by Erik Bartos
 %    \begin{macrocode}
 \newcommand*{\nn}{\ensuremath{\nonumber}}
 %    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\vecc}
+% bold vector
+%    \begin{macrocode}
+\newcommand{\vecc}[1]{\mbox{\boldmath $#1$}}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\vecc}
+% quantum mechanics brackets
+%    \begin{macrocode}
+\newcommand*{\bra}{\mathinner\langle}
+\newcommand*{\ket}{\mathinner\rangle}
+\newcommand*{\ack}{\mathinner\vert}
+%    \end{macrocode}
+%\end{macro}
 %\begin{macro}{\colorR}
 % red color macro
 %    \begin{macrocode}
@@ -280,9 +406,8 @@ Copyright (C) 2018 by Erik Bartos
 %    \end{macrocode}
 %\end{macro}
 %    \begin{macrocode}
-%</setA|setB>
+%</setA|setB|setC>
 %    \end{macrocode}
-%\end{macro}
 %    \begin{macrocode}
 %<*setA>
 %    \end{macrocode}
@@ -319,7 +444,7 @@ Copyright (C) 2018 by Erik Bartos
 %    \end{macrocode}
 %    \begin{macrocode}
 
-%%-----------------------------------------------------------------------
+%%---------------------------------------------------------------------
 %% Custom settings and definitions - start
 
 \usepackage[pdftex]{hyperref}
@@ -342,18 +467,48 @@ Copyright (C) 2018 by Erik Bartos
   }
 
 %% Custom settings and definitions - end
-%%-----------------------------------------------------------------------
+%%---------------------------------------------------------------------
 %    \end{macrocode}
 % Body of the manuscript
 %    \begin{macrocode}
 
 \begin{document}
+
 \title{Title of the paper}
 %%\renewcommand{\orcidauthorA}{0000-0003-3970-5043}
-\author{Erik Bartoš\orcidA{}}
-\maketitle
+%<templA>\author{Erik Bartoš\orcidA{}}
+%<templA>\maketitle
 
-My work\dots
+\begin{abstract}
+	Abstract goes here.
+\end{abstract}
+
+The body of the article\dots with the citations \cite{Kinoshita,Bennett}.
+
+
+\begin{thebibliography}{99}
+\bibitem{Kinoshita}
+	Toichiro Kinoshita and M.~Nio, \textit{Improved alpha**4 term of the muon
+	anomalous magnetic moment},
+	Phys. Rev. \textbf{D70} (2004) 113001.
+
+\bibitem{Bennett}
+	G.~W. Bennett et~al., \textit{Final report of the muon E821 anomalous
+	magnetic moment measurement at BNL},
+	Phys. Rev., \textbf{D73} (2006) 072003.
+\end{thebibliography}
+
+%%\bibliographystyle{unsrt}
+%%\bibliography{example_references}
+
+\appendix
+\section{Appendix}
+\renewcommand{\theequation}{A.\arabic{equation}}
+\setcounter{equation}{0}
+\begin{equation} \label{eq:2}
+	P=\frac{W}{t}.
+\end{equation}
+
 \end{document}
 
 %    \end{macrocode}
