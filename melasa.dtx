@@ -322,7 +322,7 @@ Copyright (C) 2018 by Erik Bartos
 %<templA>\documentclass[12pt,a4paper]{article}
 %<templA>\input{setArticle.sty}
 %<templB>\documentclass[aps,10pt,final,notitlepage,oneside,twocolumn,
-%<templB>  nobibnotes,footinbib,superscriptaddress,showpacs,centertags,
+%<templB>  nobibnotes,footinbib,superscriptaddress,nopacs,centertags,
 %<templB>  showkeys,amssymb]{revtex4}
 %<templB>\input{setRevtex.sty}
 %<templC>\documentclass[draft=off,%
@@ -339,8 +339,6 @@ Copyright (C) 2018 by Erik Bartos
 %<*setA|setB|setC>
 %% Version: v1.1
 %% Revised: 2018/02/20
-%    \end{macrocode}\fileversion
-%    \begin{macrocode}
 %%
 %% Packages
 %<setC>\usepackage[slovak]{babel}
@@ -366,6 +364,8 @@ Copyright (C) 2018 by Erik Bartos
 %<setA>\usepackage{comment}
 %<setB>\usepackage{comment}
 %<setC>\usepackage{indentfirst}
+%</setA|setB|setC>
+%<*setA|setB>
 %    \end{macrocode}
 %
 % New macros used in the styles.
@@ -427,7 +427,7 @@ Copyright (C) 2018 by Erik Bartos
 %    \end{macrocode}
 %\end{macro}
 %    \begin{macrocode}
-%</setA|setB|setC>
+%</setA|setB>
 %    \end{macrocode}
 %    \begin{macrocode}
 %<*setA>
@@ -483,6 +483,45 @@ Copyright (C) 2018 by Erik Bartos
 %
 %    \begin{macrocode}
 %</setA>
+%    \end{macrocode}
+%    \begin{macrocode}
+%<*templC>
+
+\makeatletter
+\@setplength{toaddrvpos}{25mm}
+\@setplength{toaddrhpos}{128mm}
+\@setplength{refvpos}{88mm}
+\@setplength{sigindent}{1em}
+\@setplength{sigbeforevskip}{5ex}
+\makeatother
+
+\begin{document}
+	\setkomavar{backaddress}{}
+	\setkomavar{backaddressseparator}{}
+	\setkomavar{fromname}{Erik Bartoš, Československých tankistov 67, 841\,06 Bratislava}
+	\setkomavar{fromphone}[\vspace*{-1em}Tel.:~]{0904 250 XXX}
+	
+	\setkomavar{subject}{Vec: Žiadosť o poskytnutie vzdelania}
+	%\setkomavar{title}{Poriadny nadpis}
+	\setkomavar{date}{}
+	
+	\setkomavar{signature}{\hspace*{.5\textwidth}Erik Bartoš}
+	\let\raggedsignature=\raggedright
+	
+	\begin{letter}{Riaditeľstvo ZŠ a MŠ\\
+			Hargašova 5\\ 841\,06 Bratislava}
+		
+		%\opening{Važený pán,}
+		\opening{} 
+		
+		Žiadam Vás o \dots
+		
+		\closing{V Bratislave \today}
+		
+		
+	\end{letter}
+\end{document}
+%</templC>
 %    \end{macrocode}
 %
 % Custom settings in user working or template file
