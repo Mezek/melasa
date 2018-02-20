@@ -123,13 +123,13 @@ Copyright (C) 2018 by Erik Bartos
 %<*internal>
 \usedir{source/latex/melasa}
 \generate{%
-  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+  \file{melasa.ins}{\from{melasa.dtx}{install}}
 }
 \nopreamble\nopostamble
 \usedir{doc/latex/melasa}
 \generate{%
   \file{README.txt}{%
-      \from{\jobname.dtx}{readme}}
+      \from{melasa.dtx}{readme}}
   \file{template_article.tex}{%
       \from{melasa.dtx}{templA}}
   \file{template_revtex.tex}{%
@@ -178,6 +178,7 @@ Copyright (C) 2018 by Erik Bartos
 % \DoNotIndex{\appendix,\arabic,\author}
 % \DoNotIndex{\begin,\bibitem,\boldmath}
 % \DoNotIndex{\cite,\color,\csname}
+% \DoNotIndex{\DeclareGraphicsExtensions}
 % \DoNotIndex{\definecolor,\documentclass,\dots,\draw}
 % \DoNotIndex{\end,\endcsname,\ensuremath,\expandafter}
 % \DoNotIndex{\fontfamily,\foreach,\frac}
@@ -529,13 +530,14 @@ Copyright (C) 2018 by Erik Bartos
 	Abstract goes here.
 \end{abstract}
 
-The body of the article\dots with the citations \cite{Kinoshita,Bennett}.
+The body of the article.
+Include the citations \cite{Kinoshita,Bennett}.
 
 
 \begin{thebibliography}{99}
 \bibitem{Kinoshita}
-	Toichiro Kinoshita and M.~Nio, \textit{Improved alpha**4 term of the muon
-	anomalous magnetic moment},
+	Toichiro Kinoshita and M.~Nio, \textit{Improved alpha**4 term of
+	the muon anomalous magnetic moment},
 	Phys. Rev. \textbf{D70} (2004) 113001.
 
 \bibitem{Bennett}
@@ -567,15 +569,12 @@ The body of the article\dots with the citations \cite{Kinoshita,Bennett}.
 % \typeout{****************************************************}
 % \typeout{*}
 % \typeout{* To finish the installation you have to move the}
-% \typeout{* following files into a directory searched by TeX:}
+% \typeout{* *.sty and *.tex files}
+% \typeout{* into a directory searched by TeX.}
 % \typeout{*}
-% \typeout{* setArticle.sty}
-% \typeout{* setRevtex.sty}
+% \typeout{* For more details read file:}
 % \typeout{*}
-% \typeout{* You can use also templates:}
-% \typeout{*}
-% \typeout{* template_article.tex}
-% \typeout{* template_revtex.tex}
+% \typeout{* README.txt}
 % \typeout{*}
 % \typeout{* Happy TeXing!}
 % \typeout{*}

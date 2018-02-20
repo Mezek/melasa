@@ -1,7 +1,7 @@
 Installation
 ============
 
-To produce the documentation and style files run the file `melasa.dtx' through PdfLaTeX.
+To produce all files run the file `melasa.dtx' through PdfLaTeX.
 
 > pdflatex melasa.dtx
 
