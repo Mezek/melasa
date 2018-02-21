@@ -29,8 +29,10 @@ melasa.pdf            User documentation (see comment below how to make
                                           complete documentary file)
 setArticle.sty        ...
 setRevtex.sty         ...
+setSlovak.sty         ...
 template_article.tex  ...
 template_revtex.tex   ...
+template_ziadost.tex  ...
 
 
 To make documentation
@@ -49,7 +51,7 @@ Move files ending *.sty and *tex to a standard TeX input directory.
 
 %</readme>
 %<*figure>
-%!PS-Adobe-3.0 EPSF-3.0
+%%!PS-Adobe-3.0 EPSF-3.0
 %%BoundingBox: 19 19 221 221
 %%CreationDate: Mon Sep 29 1997
 %%Creator: programmed by hand (JK)
@@ -62,6 +64,7 @@ gsave newpath
 closepath 2 setlinewidth gsave
 .4 setgray fill
 grestore stroke grestore
+%%EndDocument
 %</figure>
 %<*references>
 @Article{Bennett,
@@ -164,6 +167,7 @@ Copyright (C) 2018 by Erik Bartos
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
+
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
@@ -175,25 +179,36 @@ Copyright (C) 2018 by Erik Bartos
 %
 % \GetFileInfo{\jobname.dtx}
 %
-% \DoNotIndex{\appendix,\arabic,\author}
-% \DoNotIndex{\begin,\bibitem,\boldmath}
-% \DoNotIndex{\cite,\color,\csname}
-% \DoNotIndex{\DeclareGraphicsExtensions}
+% \DoNotIndex{\,,\&,\\,\@setplength}
+% \DoNotIndex{\affiliation,\altaffiliation}
+% \DoNotIndex{\appendix,\arabic,\arraybackslash,\author}
+% \DoNotIndex{\begin,\bibitem,\bibliography,\bibliographystyle}
+% \DoNotIndex{\boldmath,\bottomrule}
+% \DoNotIndex{\caption,\centering,\cite,\closing}
+% \DoNotIndex{\collaboration,\color,\columnwidth,\csname}
+% \DoNotIndex{\date,\DeclareGraphicsExtensions,\DeclareRobustCommand}
 % \DoNotIndex{\definecolor,\documentclass,\dots,\draw}
-% \DoNotIndex{\end,\endcsname,\ensuremath,\expandafter}
-% \DoNotIndex{\fontfamily,\foreach,\frac}
-% \DoNotIndex{\href,\hspace}
-% \DoNotIndex{\input}
-% \DoNotIndex{\LaTeX}
-% \DoNotIndex{\maketitle,\mathinner,\mathrm,\mbox}
-% \DoNotIndex{\newcommand,\noexpand,\nonumber}
-% \DoNotIndex{\orcidauthorA,\orcidicon}
-% \DoNotIndex{\renewcommand}
+% \DoNotIndex{\email,\end,\endcsname,\ensuremath,\epstopdfsetup}
+% \DoNotIndex{\expandafter,\extracolsep}
+% \DoNotIndex{\fill,\fontfamily,\foreach,\frac,\graphicspath,\hypersetup}
+% \DoNotIndex{\HepParticle,\HepParticleResonanceFull,\href,\hspace}
+% \DoNotIndex{\includegraphics,\input,\keywords}
+% \DoNotIndex{\label,\langle,\LaTeX,\let,\linewidth}
+% \DoNotIndex{\makeatletter,\makeatother}
+% \DoNotIndex{\maketitle,\mathinner,\mathrm,\mbox,\midrule}
+% \DoNotIndex{\newcolumntype,\newcommand,\newcounter}
+% \DoNotIndex{\newline,\noaffiliation,\noexpand,\nonumber}
+% \DoNotIndex{\openning,\orcidauthorA,\orcidicon,\pacs}
+% \DoNotIndex{\raggedleft,\raggedright,\raggedsignature,\rangle,\rho}
+% \DoNotIndex{\refstepcounter,\renewcommand}
 % \DoNotIndex{\section,\selectfont,\setcounter}
-% \DoNotIndex{\textbf,\textit,\theequation,\tiny,\title}
-% \DoNotIndex{\usepackage}
-% \DoNotIndex{\vert}
-% \DoNotIndex{\x,\xdef}
+% \DoNotIndex{\setkomavar,\setstretch,\small,\subfloat}
+% \DoNotIndex{\thanks,\thebibliography,\to,\toprule}
+% \DoNotIndex{\textbf,\textit,\textwidth,\themycomment,\thetwocomment}
+% \DoNotIndex{\theequation,\tiny,\title,\today,\todo}
+% \DoNotIndex{\unit,\uppercase,\usepackage}
+% \DoNotIndex{\vert,\vspace}
+% \DoNotIndex{\x,\xdef,\xspace}
 %
 % \title{
 %   \textsf{MeLaSa} --- My \LaTeX\ samples
@@ -205,14 +220,9 @@ Copyright (C) 2018 by Erik Bartos
 % \maketitle
 %
 % \begin{abstract}
-%   The supporting style files for the preparation of scientific manuscripts, mainly with theoretical physics thematic. The collection includes standard article, REVTeX template manuscripts.
+%   The supporting style files for the preparation of scientific manuscripts, mainly with theoretical physics thematic. The collection includes standard article and REVTeX templates. Moreover the template for Slovak application form is included.
 % \end{abstract}
 % \tableofcontents
-%
-%^^A To make glossary and index run:
-%^^A > makeindex -s gglo.ist -o melasa.gls melasa.glo
-%^^A > makeindex -s gind.ist -o melasa.ind melasa.idx
-%
 %
 % \section{Introduction}
 %
@@ -244,17 +254,17 @@ Copyright (C) 2018 by Erik Bartos
 % derivation or differential, e.~g. under integral, $\int f(x)\dd x$,\\
 % \DescribeMacro
 %     \ee
-% exponent, $\ee^x$,\\
+% exponent $\ee^x$,\\
 % \DescribeMacro
 %     \ii
-% complex unit, $\ii$,\\
+% complex unit $\ii$,\\
 % \DescribeMacro
 %     \nn
 % newline in equations\\
 % \DescribeMacro
 %     \vecc\marg{text}
-% bold vector, \vecc{a},\\
-% bra-ack-ket brackets\\
+% bold vector \vecc{a},\\
+% bra--ack--ket brackets\\
 % \DescribeMacro
 %     \bra
 % $\bra$,\\
@@ -264,6 +274,63 @@ Copyright (C) 2018 by Erik Bartos
 % \DescribeMacro
 %     \ket
 % $\ket$.
+%
+% Abbreviations of particles and decay processes in high energy physics\\
+% \DescribeMacro
+%     \UA
+% Unitary and Analytic $\UA$ model,\\
+% \DescribeMacro
+%     \Pgrs
+% $\Pgrs$,\\
+% \DescribeMacro
+%     \Pgrss
+% $\Pgrss$,\\
+% \DescribeMacro
+%     \Pgrsss
+% $\Pgrsss$,\\
+% \DescribeMacro
+%     \Pgriz
+% $\Pgriz$,\\
+% \DescribeMacro
+%     \Pgraz
+% $\Pgraz$,\\
+% \DescribeMacro
+%     \Pgrbz
+% $\Pgrbz$,\\
+% \DescribeMacro
+%     \Pgrim
+% $\Pgrim$,\\
+% \DescribeMacro
+%     \Pgram
+% $\Pgram$,\\
+% \DescribeMacro
+%     \Pgrbm
+% $\Pgrbm$,\\
+% \DescribeMacro
+%     \eepp
+% $\eepp$,\\
+% \DescribeMacro
+%     \eeppg
+% $\eeppg$,\\
+% \DescribeMacro
+%     \tnpp
+% $\tnpp$.
+%
+% New column types for tables with fixed \textit{length}\\
+% \DescribeMacro
+%     \L\marg{length}
+% left centering\\
+% \DescribeMacro
+%     \C\marg{length}
+% center centering\\
+% \DescribeMacro
+%     \R\marg{length}
+% right centering
+% \begin{verbatim}
+%	\begin{tabularx}{\linewidth}{L{7em}@{\extracolsep{\fill}} C{8em} R{8em}}
+%   ...
+%	\end{tabularx}
+% \end{verbatim}
 %
 % Macros coloring \textit{text} by user defined Red Green Blue colors\\
 % \DescribeMacro
@@ -285,13 +352,19 @@ Copyright (C) 2018 by Erik Bartos
 % \newcommand{\orcidauthorB}{yyyy-yyyy-yyyy-yyyy}
 % \end{verbatim}
 %
-% To-Do macros\\
+% To-Do macros emplace user's notes to the manuscript \\
+% \DescribeMacro
+%     \todoA\oarg{abbrev}\marg{text}
+% \DescribeMacro
+%     \todoB\oarg{abbrev}\marg{text}\\
+% where \textit{abbrev} are typically user's initials and \textit{text} is the body of the note. The notes are automatically numbered. There exist also predefined macros\\
 % \DescribeMacro
 %     \todoEB\oarg{abbrev}\marg{text}\\
 % \DescribeMacro
-%     \todoRP\oarg{abbrev}\marg{text}
-% \todoEB[--]{Todo notes of the first author.}
-% \todoRP[$\star$]{Todo notes of the second author.}
+%     \todoRP\oarg{abbrev}\marg{text}\\
+% in this macros \textit{abbrev} is limited to insert only comment, in our case `--', `$\star$' signs
+% \todoEB[--]{Todo note of the first author.}
+% \todoRP[$\star$]{Todo note of the second author.}
 %
 % \StopEventually{
 %   \PrintChanges
@@ -319,20 +392,24 @@ Copyright (C) 2018 by Erik Bartos
 %% (C) 2018 Erik Bartoš
 %</templA|templB|templC>
 %<templA|templB|templC>
-%<templA>\documentclass[12pt,a4paper]{article}
+%<templA>\documentclass[11pt,a4paper]{article}
+%<templA>
 %<templA>\input{setArticle.sty}
 %<templB>\documentclass[aps,10pt,final,notitlepage,oneside,twocolumn,
 %<templB>  nobibnotes,footinbib,superscriptaddress,nopacs,centertags,
 %<templB>  showkeys,amssymb]{revtex4}
+%<templB>
 %<templB>\input{setRevtex.sty}
-%<templC>\documentclass[draft=off,%
+%<templC>\documentclass[draft=false,%
 %<templC>paper=a4,%
 %<templC>fromalign=left,%
 %<templC>fromrule=on,%
 %<templC>fromphone=on,%
 %<templC>subject=beforeopening,%
 %<templC>version=last]{scrlttr2}
+%<templC>
 %<templC>\input{setSlovak.sty}
+%<templA|templB|templC>
 %    \end{macrocode}
 % Next the declaration of packages and their options continue
 %    \begin{macrocode}
@@ -341,10 +418,13 @@ Copyright (C) 2018 by Erik Bartos
 %% Revised: 2018/02/20
 %%
 %% Packages
+%</setA|setB|setC>
 %<setC>\usepackage[slovak]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,microtype}
+\usepackage{lmodern}
+\usepackage{microtype}
+%<*setA|setB>
 \usepackage{graphicx}
   \graphicspath{{/}{figures/}}
   \DeclareGraphicsExtensions{.pdf,.png,.jpg}
@@ -361,10 +441,10 @@ Copyright (C) 2018 by Erik Bartos
 \usepackage{hepnicenames}
 \usepackage{tikz}
 \usepackage{todonotes}
+%</setA|setB>
 %<setA>\usepackage{comment}
 %<setB>\usepackage{comment}
 %<setC>\usepackage{indentfirst}
-%</setA|setB|setC>
 %<*setA|setB>
 %    \end{macrocode}
 %
@@ -408,6 +488,42 @@ Copyright (C) 2018 by Erik Bartos
 \newcommand*{\ack}{\mathinner\vert}
 %    \end{macrocode}
 %\end{macro}
+% high energy physics abbreviatons
+%    \begin{macrocode}
+\newcommand{\UA}{$U\&A$\xspace}
+\DeclareRobustCommand{\Pgrs}{%
+	\HepParticle{\Pgr^{\prime}}{}{}\xspace}
+\DeclareRobustCommand{\Pgrss}{%
+	\HepParticle{\Pgr^{\prime\prime}}{}{}\xspace}
+\DeclareRobustCommand{\Pgrsss}{%
+	\HepParticle{\Pgr^{\prime\prime\prime}}{}{}\xspace}
+
+\DeclareRobustCommand{\Pgriz}{%
+	\HepParticleResonanceFull{\rho}{}{0}{770}{}{}\xspace}
+\DeclareRobustCommand{\Pgraz}{%
+	\HepParticleResonanceFull{\rho}{}{0}{1450}{}{}\xspace}
+\DeclareRobustCommand{\Pgrbz}{%
+	\HepParticleResonanceFull{\rho}{}{0}{1700}{}{}\xspace}
+\DeclareRobustCommand{\Pgrim}{%
+	\HepParticleResonanceFull{\rho}{}{-}{770}{}{}\xspace}
+\DeclareRobustCommand{\Pgram}{%
+	\HepParticleResonanceFull{\rho}{}{-}{1450}{}{}\xspace}
+\DeclareRobustCommand{\Pgrbm}{%
+	\HepParticleResonanceFull{\rho}{}{-}{1700}{}{}\xspace}
+
+\newcommand*{\eepp}{\ensuremath{\Pep\Pem\to\Pgpp\Pgpm}}
+\newcommand*{\eeppg}{\ensuremath{\Pep\Pem\to\Pgpp\Pgpm\Pgg}}
+\newcommand*{\tnpp}{\ensuremath{\Pgtm\to\Pgngt\Pgpm\Pgpz}}
+%    \end{macrocode}
+% new table columns
+%    \begin{macrocode}
+\newcolumntype{L}[1]{%
+	>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{%
+	>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{%
+	>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%    \end{macrocode}
 %\begin{macro}{\colorR}
 % red color macro
 %    \begin{macrocode}
@@ -428,8 +544,6 @@ Copyright (C) 2018 by Erik Bartos
 %\end{macro}
 %    \begin{macrocode}
 %</setA|setB>
-%    \end{macrocode}
-%    \begin{macrocode}
 %<*setA>
 %    \end{macrocode}
 %
@@ -484,6 +598,7 @@ Copyright (C) 2018 by Erik Bartos
 %    \begin{macrocode}
 %</setA>
 %    \end{macrocode}
+% The code for \verb|template_ziadost.tex|
 %    \begin{macrocode}
 %<*templC>
 
@@ -498,8 +613,9 @@ Copyright (C) 2018 by Erik Bartos
 \begin{document}
 	\setkomavar{backaddress}{}
 	\setkomavar{backaddressseparator}{}
-	\setkomavar{fromname}{Erik Bartoš, Československých tankistov 67, 841\,06 Bratislava}
-	\setkomavar{fromphone}[\vspace*{-1em}Tel.:~]{0904 250 XXX}
+	\setkomavar{fromname}{Erik Bartoš, Československých tankistov 67,%
+                          841\,06 Bratislava}
+	\setkomavar{fromphone}[\vspace*{-1em}Tel.:~]{+421 904 250 XXX}
 	
 	\setkomavar{subject}{Vec: Žiadosť o poskytnutie vzdelania}
 	%\setkomavar{title}{Poriadny nadpis}
@@ -511,8 +627,8 @@ Copyright (C) 2018 by Erik Bartos
 	\begin{letter}{Riaditeľstvo ZŠ a MŠ\\
 			Hargašova 5\\ 841\,06 Bratislava}
 		
-		%\opening{Važený pán,}
-		\opening{} 
+		%%\opening{Važená pani,}
+		\opening{Važený pán,} 
 		
 		Žiadam Vás o \dots
 		
@@ -524,7 +640,7 @@ Copyright (C) 2018 by Erik Bartos
 %</templC>
 %    \end{macrocode}
 %
-% Custom settings in user working or template file
+% Custom settings in user's file
 %    \begin{macrocode}
 %<*templA|templB>
 %    \end{macrocode}
@@ -555,24 +671,107 @@ Copyright (C) 2018 by Erik Bartos
 %% Custom settings and definitions - end
 %%---------------------------------------------------------------------
 %    \end{macrocode}
-% Body of the manuscript
+% Body of the article manuscript
 %    \begin{macrocode}
 
 \begin{document}
 
 \title{Title of the paper}
-%%\renewcommand{\orcidauthorA}{0000-0003-3970-5043}
-%<templA>\author{Erik Bartoš\orcidA{}}
-%<templA>\maketitle
 
+%%\renewcommand{\orcidauthorA}{0000-0003-3970-5043}
+%<*templA>
+\author{Erik Bartoš\orcidA{}%
+        %\thanks{Supported by a grant}%
+}
+%</templA>
+%<*templB>
+\author{Erik Bartoš}
+\email[]{erik.bartos@savba.sk}
+%\thanks{}
+\affiliation{%
+	Institute of Physics, Slovak Academy of Sciences,%
+	Dúbravská cesta 9, 845 11 Bratislava, Slovak Republic%
+}
+%\altaffiliation{}
+%\collaboration{}
+%\noaffiliation
+%</templB>
+
+\date{\today}
+
+%<templA>\maketitle
+	
 \begin{abstract}
 	Abstract goes here.
 \end{abstract}
 
-The body of the article.
-Include the citations \cite{Kinoshita,Bennett}.
+%<templB>%\pacs{}
+%<templB>\keywords{}
+%<templB>\maketitle
 
+%%---------------------------------------------------------------------
+%%	SECTION
+%%---------------------------------------------------------------------
+\section{Introduction} \label{sec:intro}
 
+The body of the article. Fill the sections.
+Insert the citations \cite{Kinoshita,Bennett}.
+
+%<*templB>
+%\begin{widetext}
+% put very long equations here
+%\end{widetext}
+%</templB>
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.4\columnwidth]{example_figure}%
+	\caption{Full description of the plot.\label{fig:1}}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\subfloat[$q = 1$]{
+			\includegraphics[width=0.38\columnwidth]{example_figure}
+		}
+		\subfloat[$q = 2$]{
+			\includegraphics[width=0.38\columnwidth]{example_figure}
+		}\\
+		\subfloat[$q = 3$]{
+			\includegraphics[width=0.38\columnwidth]{example_figure}
+		}
+		\subfloat[$q = 4$]{
+			\includegraphics[width=0.38\columnwidth]{example_figure}
+		}
+	\end{center}
+	\caption{Mosaic plot with subfigures. \label{fig:2}}
+\end{figure}
+
+\begin{table}[htb]
+	\begin{tabularx}{\linewidth}{L{7em}@{\extracolsep{\fill}} C{8em} R{8em}}
+		\toprule 
+			\textbf{Name} & \textbf{Value} & \textbf{Error} \\
+			              & \textbf{[$\unit{GeV}$]} & \textbf{[$\unit{GeV}$]} \\
+		\midrule
+			m & 1.1 & 0.02\\
+			M & 4.5 & 0.03\\
+		\bottomrule 
+	\end{tabularx}
+	\caption{Table caption. \label{tab:1}}
+\end{table}
+
+%<templB>\begin{acknowledgments}
+%<templA>\section*{Acknowledgments}
+The work was partially supported by Slovak Research and Development
+Agency SRDA and Slovak Grant Agency for Science VEGA under the grants
+No. APVV-XXXX-YY, VEGA X/YYYY/ZZ.
+%<templB>\end{acknowledgments}
+
+%    \end{macrocode}
+%\begin{macro}{\thebibliography}
+% For the references use \verb|\thebibliography| or uncomment \BibTeX lines bellow
+%\end{macro}
+%    \begin{macrocode}
 \begin{thebibliography}{99}
 \bibitem{Kinoshita}
 	Toichiro Kinoshita and M.~Nio, \textit{Improved alpha**4 term of
@@ -585,11 +784,15 @@ Include the citations \cite{Kinoshita,Bennett}.
 	Phys. Rev., \textbf{D73} (2006) 072003.
 \end{thebibliography}
 
+%    \end{macrocode}
+%\begin{macro}{\bibliographystyle}
+%\end{macro}
+%    \begin{macrocode}
 %%\bibliographystyle{unsrt}
 %%\bibliography{example_references}
 
 \appendix
-\section{Appendix}
+\section{Appendix}\label{app:A}
 \renewcommand{\theequation}{A.\arabic{equation}}
 \setcounter{equation}{0}
 \begin{equation} \label{eq:2}
@@ -598,8 +801,6 @@ Include the citations \cite{Kinoshita,Bennett}.
 
 \end{document}
 
-%    \end{macrocode}
-%    \begin{macrocode}
 %</templA|templB>
 %    \end{macrocode}
 %
@@ -612,8 +813,12 @@ Include the citations \cite{Kinoshita,Bennett}.
 % \typeout{* into a directory searched by TeX.}
 % \typeout{*}
 % \typeout{* For more details read file:}
-% \typeout{*}
 % \typeout{* README.txt}
+% \typeout{*}
+% \typeout{* Complete processing of documentation by commands:}
+% \typeout{* > makeindex -s gglo.ist -o melasa.gls melasa.glo}
+% \typeout{* > makeindex -s gind.ist -o melasa.ind melasa.idx}
+% \typeout{* > pdflatex melasa.dtx}
 % \typeout{*}
 % \typeout{* Happy TeXing!}
 % \typeout{*}
