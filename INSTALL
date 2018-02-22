@@ -5,4 +5,4 @@ To produce all files run the file `melasa.dtx' through PdfLaTeX.
 
 > pdflatex melasa.dtx
 
-After the processing, consult README.txt file.
+After the processing of files, consult README.txt file.
