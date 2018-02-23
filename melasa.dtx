@@ -186,7 +186,8 @@ Copyright (C) 2018 by Erik Bartos
 % \DoNotIndex{\boldmath,\bottomrule}
 % \DoNotIndex{\caption,\centering,\cite,\closing}
 % \DoNotIndex{\collaboration,\color,\columnwidth,\csname}
-% \DoNotIndex{\date,\DeclareGraphicsExtensions,\DeclareRobustCommand}
+% \DoNotIndex{\date,\DeclareGraphicsExtensions,\DeclareMathOperator}
+% \DoNotIndex{\DeclareRobustCommand}
 % \DoNotIndex{\definecolor,\documentclass,\dots,\draw}
 % \DoNotIndex{\email,\end,\endcsname,\ensuremath,\epstopdfsetup}
 % \DoNotIndex{\expandafter,\extracolsep}
@@ -198,7 +199,7 @@ Copyright (C) 2018 by Erik Bartos
 % \DoNotIndex{\maketitle,\mathinner,\mathrm,\mbox,\midrule}
 % \DoNotIndex{\newcolumntype,\newcommand,\newcounter}
 % \DoNotIndex{\newline,\noaffiliation,\noexpand,\nonumber}
-% \DoNotIndex{\openning,\orcidauthorA,\orcidicon,\pacs}
+% \DoNotIndex{\opening,\orcidauthorA,\orcidicon,\pacs}
 % \DoNotIndex{\raggedleft,\raggedright,\raggedsignature,\rangle,\rho}
 % \DoNotIndex{\refstepcounter,\renewcommand}
 % \DoNotIndex{\section,\selectfont,\setcounter}
@@ -216,7 +217,7 @@ Copyright (C) 2018 by Erik Bartos
 % }
 % \author{Erik Bartoš\\[0.7em]
 %	\href{mailto:erik.bartos@gmail.com}{erik.bartos@gmail.com}\\
-%   \href{https://sourceforge.net/p/melasa}{SourceForge.net}
+%   \href{https://sourceforge.net/p/melasa}{SourceForge}}
 %
 % \date{\filedate}
 % \maketitle
@@ -275,7 +276,17 @@ Copyright (C) 2018 by Erik Bartos
 % $\ack$,\\
 % \DescribeMacro
 %     \ket
-% $\ket$.
+% $\ket$,\\
+% some new functions\\
+% \DescribeMacro
+%      \Arg
+% $\Arg z$,\\
+% \DescribeMacro
+%      \atanTwo
+% $\atanTwo(x)$,\\
+% \DescribeMacro
+%      \sgn
+% $\sgn(x)$.
 %
 % Abbreviations of particles and decay processes in high energy physics\\
 % \DescribeMacro
@@ -417,7 +428,7 @@ Copyright (C) 2018 by Erik Bartos
 %    \begin{macrocode}
 %<*setA|setB|setC>
 %% Version: v1.1
-%% Revised: 2018/02/22
+%% Revised: 2018/02/23
 %%
 %% Packages
 %</setA|setB|setC>
@@ -491,12 +502,13 @@ Copyright (C) 2018 by Erik Bartos
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\Arg}
-% complex numbers
+% functions
 %    \begin{macrocode}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\atanTwo}{atan2}
 \DeclareMathOperator{\sgn}{sgn}
-
+%    \end{macrocode}
+%\end{macro}
 % high energy physics abbreviatons
 %    \begin{macrocode}
 \newcommand{\UA}{$U\&A$\xspace}
