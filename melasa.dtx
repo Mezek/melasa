@@ -1,5 +1,5 @@
 % \iffalse meta-comment
-% !TEX program  = pdfLaTeX
+% !TEX program = pdfLaTeX
 %
 % Copyright (C) 2018 by Erik Bartoš
 %
@@ -214,7 +214,9 @@ Copyright (C) 2018 by Erik Bartos
 %   \textsf{MeLaSa} --- My \LaTeX\ samples
 %   ^^A\thanks{This file describes version \fileversion, last revised \filedate.}
 % }
-% \author{Erik Bartoš\\[0.7em]  \texttt{<erik.bartos@gmail.com>}}
+% \author{Erik Bartoš\\[0.7em]
+%	\href{mailto:erik.bartos@gmail.com}{erik.bartos@gmail.com}\\
+%   \href{https://sourceforge.net/p/melasa}{SourceForge.net}
 %
 % \date{\filedate}
 % \maketitle
@@ -488,6 +490,13 @@ Copyright (C) 2018 by Erik Bartos
 \newcommand*{\ack}{\mathinner\vert}
 %    \end{macrocode}
 %\end{macro}
+%\begin{macro}{\Arg}
+% complex numbers
+%    \begin{macrocode}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\atanTwo}{atan2}
+\DeclareMathOperator{\sgn}{sgn}
+
 % high energy physics abbreviatons
 %    \begin{macrocode}
 \newcommand{\UA}{$U\&A$\xspace}
