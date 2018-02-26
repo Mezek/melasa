@@ -174,10 +174,26 @@ Copyright (C) 2018 by Erik Bartos
 %</driver>
 % \fi
 % 
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+	%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+	%   Digits        \0\1\2\3\4\5\6\7\8\9
+	%   Exclamation   \!     Double quote  \"     Hash (number) \#
+	%   Dollar        \$     Percent       \%     Ampersand     \&
+	%   Acute accent  \'     Left paren    \(     Right paren   \)
+	%   Asterisk      \*     Plus          \+     Comma         \,
+	%   Minus         \-     Point         \.     Solidus       \/
+	%   Colon         \:     Semicolon     \;     Less than     \<
+	%   Equals        \=     Greater than  \>     Question mark \?
+	%   Commercial at \@     Left bracket  \[     Backslash     \\
+	%   Right bracket \]     Circumflex    \^     Underscore    \_
+	%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+	%   Right brace   \}     Tilde         \~}
+%
 % \changes{v1.0}{2018/02/16}{Initial release}
 % \changes{v1.1}{2018/02/22}{Added new templates and documentation}
 %
-% \GetFileInfo{\jobname.dtx}
+% \GetFileInfo{melasa.dtx}
 %
 % \DoNotIndex{\,,\&,\\,\@setplength}
 % \DoNotIndex{\affiliation,\altaffiliation}
@@ -199,7 +215,7 @@ Copyright (C) 2018 by Erik Bartos
 % \DoNotIndex{\maketitle,\mathinner,\mathrm,\mbox,\midrule}
 % \DoNotIndex{\newcolumntype,\newcommand,\newcounter}
 % \DoNotIndex{\newline,\noaffiliation,\noexpand,\nonumber}
-% \DoNotIndex{\opening,\orcidauthorA,\orcidicon,\pacs}
+% \DoNotIndex{\opening,\ORCID,\orcidA,\orcidauthorA,\orcidicon,\pacs,\prime}
 % \DoNotIndex{\raggedleft,\raggedright,\raggedsignature,\rangle,\rho}
 % \DoNotIndex{\refstepcounter,\renewcommand}
 % \DoNotIndex{\section,\selectfont,\setcounter}
@@ -356,10 +372,12 @@ Copyright (C) 2018 by Erik Bartos
 %     \colorB\marg{text}
 % \colorB{blue text}
 %
-% \par ORCID author link\\
+% \par ORCID link for author X$=$A, B, C,\dots Z\\
+% \DescribeMacro{\orcidX}
+%     used, e.~g., \verb|\author{Name Surname\orcidA}|,\\
 % \DescribeMacro
 %     \orcidauthorX\marg{xxxx}\\
-% Default ORCID number for author A is 0000-0003-3970-5043. You can change it by \verb|\renewcommand| reset. B, C,\dots Z author's ORCID numbers must be set by \verb|\newcommand| macro as
+% default ORCID number for author A is 0000-0003-3970-5043. You can change it by \verb|\renewcommand| reset. Other author's ORCID numbers must be set by \verb|\newcommand| macro as
 % \par\begin{verbatim}
 % \renewcommand{\orcidauthorA}{xxxx-xxxx-xxxx-xxxx}
 % \newcommand{\orcidauthorB}{yyyy-yyyy-yyyy-yyyy}
@@ -367,10 +385,10 @@ Copyright (C) 2018 by Erik Bartos
 %
 % To-Do macros emplace user's notes to the manuscript \\
 % \DescribeMacro
-%     \todoA\oarg{abbrev}\marg{text}
+%     \todoA\oarg{abbrev}\marg{text}\\
 % \DescribeMacro
 %     \todoB\oarg{abbrev}\marg{text}\\
-% where \textit{abbrev} are typically user's initials and \textit{text} is the body of the note. The notes are automatically numbered. There exist also predefined macros\\
+% where \textit{abbrev} are typically user's initials and \textit{text} is the body of the note, the notes are automatically numbered. There exist also predefined macros\\
 % \DescribeMacro
 %     \todoEB\oarg{abbrev}\marg{text}\\
 % \DescribeMacro
@@ -473,14 +491,12 @@ Copyright (C) 2018 by Erik Bartos
 \newcommand{\m}[1]{\mathrm {#1}}
 %    \end{macrocode}
 %\end{macro}
-%\begin{macro}{\dd}
-% derived letters
+% and derived letters
 %    \begin{macrocode}
 \newcommand*{\dd}{\ensuremath{\mathrm{d}}}
 \newcommand*{\ee}{\ensuremath{\mathrm{e}}}
 \newcommand*{\ii}{\ensuremath{\mathrm{i}}}
 %    \end{macrocode}
-%\end{macro}
 %\begin{macro}{\nn}
 % new line in equations
 %    \begin{macrocode}
@@ -493,22 +509,18 @@ Copyright (C) 2018 by Erik Bartos
 \newcommand{\vecc}[1]{\mbox{\boldmath $#1$}}
 %    \end{macrocode}
 %\end{macro}
-%\begin{macro}{\vecc}
 % quantum mechanics brackets
 %    \begin{macrocode}
 \newcommand*{\bra}{\mathinner\langle}
-\newcommand*{\ket}{\mathinner\rangle}
 \newcommand*{\ack}{\mathinner\vert}
+\newcommand*{\ket}{\mathinner\rangle}
 %    \end{macrocode}
-%\end{macro}
-%\begin{macro}{\Arg}
-% functions
+% math functions
 %    \begin{macrocode}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\atanTwo}{atan2}
 \DeclareMathOperator{\sgn}{sgn}
 %    \end{macrocode}
-%\end{macro}
 % high energy physics abbreviatons
 %    \begin{macrocode}
 \newcommand{\UA}{$U\&A$\xspace}
@@ -545,30 +557,17 @@ Copyright (C) 2018 by Erik Bartos
 \newcolumntype{R}[1]{%
 	>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 %    \end{macrocode}
-%\begin{macro}{\colorR}
-% red color macro
+% color macros
 %    \begin{macrocode}
 \newcommand{\colorR}[1]{{\color{red}#1}}
-%    \end{macrocode}
-%\end{macro}
-%\begin{macro}{\colorG}
-% green color macro
-%    \begin{macrocode}
 \newcommand{\colorG}[1]{{\color{ForestGreen}#1}}
-%    \end{macrocode}
-%\end{macro}
-%\begin{macro}{\colorB}
-% blue color macro
-%    \begin{macrocode}
 \newcommand{\colorB}[1]{{\color{RoyalBlue}#1}}
 %    \end{macrocode}
-%\end{macro}
 %    \begin{macrocode}
 %</setA|setB>
 %<*setA>
 %    \end{macrocode}
 %
-%\begin{macro}{ORCID}
 %    \begin{macrocode}
 %% ORCID
 \definecolor{lime}{HTML}{A6CE39}
@@ -588,8 +587,6 @@ Copyright (C) 2018 by Erik Bartos
       \noexpand\orcidicon}}}
 \newcommand{\orcidauthorA}{0000-0003-3970-5043}
 %    \end{macrocode}
-%\end{macro}
-%\begin{macro}{\todoA}
 %    \begin{macrocode}
 %% To-do notes
 \newcounter{mycomment}
@@ -614,8 +611,6 @@ Copyright (C) 2018 by Erik Bartos
 }}
 \newcommand*{\todoRP}[2][]{\todoB[RP#1]{#2}}
 %    \end{macrocode}
-%\end{macro}
-%
 %    \begin{macrocode}
 %</setA>
 %    \end{macrocode}
@@ -701,7 +696,7 @@ Copyright (C) 2018 by Erik Bartos
 
 %%\renewcommand{\orcidauthorA}{0000-0003-3970-5043}
 %<*templA>
-\author{Erik Bartoš\orcidA{}%
+\author{Erik Bartoš\orcidA%
         %\thanks{Supported by a grant}%
 }
 %</templA>
@@ -789,9 +784,7 @@ No. APVV-XXXX-YY, VEGA X/YYYY/ZZ.
 %<templB>\end{acknowledgments}
 
 %    \end{macrocode}
-%\begin{macro}{\thebibliography}
 % For the references use \verb|\thebibliography| or uncomment \BibTeX lines bellow
-%\end{macro}
 %    \begin{macrocode}
 \begin{thebibliography}{99}
 \bibitem{Kinoshita}
@@ -806,8 +799,6 @@ No. APVV-XXXX-YY, VEGA X/YYYY/ZZ.
 \end{thebibliography}
 
 %    \end{macrocode}
-%\begin{macro}{\bibliographystyle}
-%\end{macro}
 %    \begin{macrocode}
 %%\bibliographystyle{unsrt}
 %%\bibliography{example_references}
