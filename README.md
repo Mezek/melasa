@@ -46,8 +46,12 @@ Move files ending *.sty* and *.tex* to a standard TeX input directory. You can e
 Preview
 =======
 
-![Screenshot1](./images/article.png)
-![Screenshot2](./images/revtex.png)
+| ![Screenshot1](./images/article.png) |
+|:--:|
+| *Article style template* |
+| ![Screenshot2](./images/revtex.png) |
+|:--:|
+| *Revtex style template* |
 
 Bugs and remarks
 ================
