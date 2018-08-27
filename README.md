@@ -50,7 +50,6 @@ Preview
 |:--:|
 | *Article style template* |
 | ![Screenshot2](./images/revtex.png) |
-|:--:|
 | *Revtex style template* |
 
 Bugs and remarks
