@@ -5,9 +5,19 @@ MeLaSa &mdash; My LaTeX Samples are supporting style files for LaTeX articles us
 
 The contributors can be found in the file "[AUTHORS](AUTHORS)".
 
+Preview
+=======
+
+| ![Screenshot1](./images/article.png) |
+|:--:|
+| *Article style template* |
+| ![Screenshot2](./images/revtex.png) |
+| *Revtex style template* |
+
 To unpack the files
 ===================
 
+Clone the project, unpack the files proceeding with the standard latex command `pdflatex`
 ```
 pdflatex melasa.dtx
 ```
@@ -42,15 +52,6 @@ Using the files
 ===============
 
 Move files ending *.sty* and *.tex* to a standard TeX input directory. You can edit *.tex* templates for your purposes.
-
-Preview
-=======
-
-| ![Screenshot1](./images/article.png) |
-|:--:|
-| *Article style template* |
-| ![Screenshot2](./images/revtex.png) |
-| *Revtex style template* |
 
 Bugs and remarks
 ================
