@@ -25,7 +25,7 @@ pdflatex melasa.dtx
 Files
 =====
 
-After unpacking you will find files:
+After unpacking you will find files
 ```
 README.txt            Readme file
 melasa.pdf            User documentation (see comment below how to make
@@ -41,7 +41,7 @@ template_ziadost.tex  ...
 To make documentation
 =====================
 
-Run following commands to produce complete documentary file melasa.pdf.
+Run following commands to produce the file *melasa.pdf* with complete documentation
 ```
 makeindex -s gglo.ist -o melasa.gls melasa.glo
 makeindex -s gind.ist -o melasa.ind melasa.idx
