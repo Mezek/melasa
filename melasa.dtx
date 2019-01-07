@@ -361,7 +361,7 @@ Copyright (C) 2018 by Erik Bartos
 %	\end{tabularx}
 % \end{verbatim}
 %
-% Macros coloring \textit{text} by user defined Red Green Blue colors\\
+% Red Green Blue macros coloring \textit{text} by user defined colors\\
 % \DescribeMacro
 %     \colorR\marg{text}
 % \colorR{red text}\\
@@ -371,6 +371,14 @@ Copyright (C) 2018 by Erik Bartos
 % \DescribeMacro
 %     \colorB\marg{text}
 % \colorB{blue text}
+%
+% Macros emphasising \textit{text}\\
+% \DescribeMacro
+%     \cwarn\marg{text}
+% \cwarn{warning text}\\
+% \DescribeMacro
+%     \cnote\marg{text}
+% \cnote{note text}\\
 %
 % \par ORCID link for author X$=$A, B, C,\dots Z\\
 % \DescribeMacro{\orcidX}
@@ -558,11 +566,13 @@ Copyright (C) 2018 by Erik Bartos
 \newcolumntype{R}[1]{%
 	>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 %    \end{macrocode}
-% color macros
+% color and emphasising macros
 %    \begin{macrocode}
 \newcommand{\colorR}[1]{{\color{red}#1}}
 \newcommand{\colorG}[1]{{\color{ForestGreen}#1}}
 \newcommand{\colorB}[1]{{\color{RoyalBlue}#1}}
+\newcommand*{\cwarn}[1]{{\color{red}#1}}
+\newcommand*{\cnote}[1]{{\color{blue}#1}}
 %    \end{macrocode}
 %    \begin{macrocode}
 %</setA|setB>
