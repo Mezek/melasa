@@ -1,7 +1,7 @@
 MeLaSa
 =============
 
-MeLaSa &mdash; My LaTeX Samples are supporting style files for LaTeX articles used in the process of writing scientific papers.
+`MeLaSa` &mdash; My LaTeX Samples are supporting style files for LaTeX articles used in the process of writing scientific papers.
 
 The contributors can be found in the file "[AUTHORS](AUTHORS)".
 
