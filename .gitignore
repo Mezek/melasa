@@ -59,3 +59,14 @@
 *.ilg
 *.ind
 *.ist
+
+## Not package files
+*.tex
+*.sty
+*.pdf
+*.ins
+*.hd
+*.bib
+*.eps
+*.txt
+
